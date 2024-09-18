@@ -1,7 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
-router.post("/createuser", async(req, res)=> {
+const {check, validationResult} = require('express-validator')
+router.post("/createuser", 
+  // body('email', 'invalid email').isEmail(),
+  check('password', 'Password must be of atleast 5 characters').isLength({min: 5})
+  ,async(req, res)=> {
+
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+      return res.status(400).json({errors: errors.array()})
+    }
   try {
     await User.create({
       name:req.body.name,

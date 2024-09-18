@@ -1,0 +1,53 @@
+.btn-primary {
+  min-width: 6rem;
+  background-color: chocolate;
+  border: 1px solid  chocolate;
+  /* border-radius: 10px; */
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+.btn-primary:hover{
+  background-color: white;
+  color: chocolate;
+  border: 1px solid  chocolate;
+}
+.btn-primary:active {
+  background-color: chocolate !important;
+  border: 1px solid  chocolate !important;
+  box-shadow: none;
+}
+
+.btn-outline-primary {
+  min-width: 6rem;
+  border: 1px solid  chocolate;
+  color: chocolate;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+.btn-outline-primary:hover{
+  background-color: chocolate;
+  color: white;
+  border: 1px solid  chocolate;
+}
+.btn-outline-primary:active {
+  background-color: white !important;
+  border: 1px solid  chocolate !important;
+  color: chocolate !important;
+  
+}
+.nav-item{
+  box-sizing: border-box;
+}
+.nav-link {
+  color: #c25609;
+  transition:font-weight 0.3s ease;
+}
+.nav-link:active, .nav-link:hover {
+  color: #c25609;
+  font-weight:600;
+}
+.navbar {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.logo {
+  color: #f06d3a;
+}
