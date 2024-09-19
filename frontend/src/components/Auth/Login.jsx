@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import './signup.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [credentials, setCredentials] = useState({email:'',password:''})
+  let Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/createuser", {
+    const response = await fetch("http://localhost:3000/api/userlogin", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -16,7 +17,13 @@ const Login = () => {
     })
     const json = await response.json()
     console.log(json);
-    // console.log( JSON.stringify({name: credentials.name, email:credentials.email, location:credentials.location, password:credentials.password}))
+    console.log(  JSON.stringify({email:credentials.email,password:credentials.password}))
+
+    if(json.success) {
+      // window.location.href = "/"
+      //Alternatively
+      Navigate("/")
+    }
   }
 
   const handleOnChange = (event) => {
