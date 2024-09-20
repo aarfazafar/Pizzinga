@@ -20,9 +20,13 @@ const Login = () => {
     console.log(  JSON.stringify({email:credentials.email,password:credentials.password}))
 
     if(json.success) {
+
+      localStorage.setItem("authToken", json.authToken)
       // window.location.href = "/"
       //Alternatively
       Navigate("/")
+      // console.log(localStorage.getItem("authToken"))
+
     }
   }
 

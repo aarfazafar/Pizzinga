@@ -3,7 +3,9 @@ const router = express.Router();
 const User = require("../models/User");
 
 const { body, validationResult } = require("express-validator");
-
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const jwtSecret = "HeyThisIsMyProjectWorkOfOIBSIPLevel3"
 router.post(
   "/userlogin",
   body("email", "invalid email").isEmail(),
@@ -23,11 +25,18 @@ router.post(
       if (!userData) {
         return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
     }
-      if (password !== userData.password) {
+
+    const comparePassword = await bcrypt.compare(password, userData.password)
+      if (!comparePassword) {
         return res.status(400).json({ errors: "Incorrect Password" });
       }
-
-      return res.json({ success: true });
+      const data = {
+        user:{
+          id:userData.id
+        }
+      }
+      const authToken = jwt.sign(data, jwtSecret)
+      return res.json({ success: true, authToken:authToken });
     } catch (error) {
       console.log(error);
       res.json({ success: false });
