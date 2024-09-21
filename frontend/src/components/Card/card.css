@@ -1,0 +1,45 @@
+
+.custom-img {
+  height: 10rem;
+}
+.card-body {
+  /* box-shadow: inset black; */
+}
+.card-title {
+  font-size: large;
+}
+.card-text {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  font-style: normal;
+  font-weight: 350;
+  text-align: justify;
+}
+label {
+  padding-top: 0.4rem;
+  font-size: small;
+}
+.form-select {
+  width: 6rem;
+  font-size: 0.8rem;
+}
+.custom-btn {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1.6px solid chocolate;
+  background-color: white;
+  color:chocolate;
+}
+.custom-btn:hover{
+  border: 1.6px solid chocolate;
+  background-color: chocolate;
+  color:white;
+}
+
+
+/* .selection {
+  width: 15rem;
+  font-size: 1rem;
+} */

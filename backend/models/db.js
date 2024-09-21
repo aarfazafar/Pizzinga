@@ -15,6 +15,9 @@ const connectToDatabase = async () => {
       const fetched_data = await mongoose.connection.db.collection("pizza");
       const data = await fetched_data.find({}).toArray();  // Use await here instead of a callback
       // console.log(data);
+      global.food_items = data;
+      // console.log(global.food_items);
+
     } catch (err) {
       console.error(err);  
     }

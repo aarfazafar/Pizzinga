@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 app.use("/api", require("./Routes/createUser"));
+app.use("/api", require("./Routes/DisplayData"));
 
 app.use("/api", require("./Routes/userLogin"));
 
