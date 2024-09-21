@@ -1,15 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Screenshot_2024-09-16_181805-removebg-preview.png";
-import './navbar.css'
+import "./navbar.css";
+
+
 const Navbar = () => {
+  const navigate = useNavigate()
   const handleLoginClick = (e) => {
-    e.preventDefault()
-     window.location.href = "/login"
-  }
+    e.preventDefault();
+    window.location.href = "/login";
+  };
   const handleSignupClick = (e) => {
-    e.preventDefault()
-     window.location.href = "/register"
+    e.preventDefault();
+    window.location.href = "/register";
+  };
+  const handleLogoutClick = (e) => {
+    // console.log('out')
+    localStorage.removeItem("authToken")
+    navigate('/')
   }
   return (
     <>
@@ -25,8 +33,8 @@ const Navbar = () => {
             />
             <h3 className="d-inline logo fst-italic ms-1">Pizzinga</h3>
           </Link>
-        </div>   
-          {/* <button
+        </div>
+        {/* <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -37,8 +45,11 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button> */}
-          <div className="container-fluid">
-          <div className="collapse navbar-collapse w-100 d-flex justify-content-center" id="navbarNav">
+        <div className="container-fluid">
+          <div
+            className="collapse navbar-collapse w-100 d-flex justify-content-center"
+            id="navbarNav"
+          >
             <ul className="navbar-nav">
               <li className="nav-item">
                 <Link className="nav-link" aria-current="page" to="/">
@@ -61,19 +72,48 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-
           </div>
+        </div>
+        <div className="container-fluid">
+          <div className="w-100 d-flex justify-content-end gap-3">
+            {localStorage.getItem("authToken") ? (
+              <>
+               <button
+                  type="button"
+                  className="btn btn-outline-primary p-2"
+                  onClick={handleLogoutClick}
+                >
+                  Log out
+                </button>
+                  <button
+                  type="button"
+                  className="btn btn-primary p-2"
+                  // onClick={handleLoginClick}
+                >
+                  Cart
+                </button>
+              </>
+              // </div>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary p-2"
+                  onClick={handleLoginClick}
+                >
+                  Login
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary p-2"
+                  onClick={handleSignupClick}
+                >
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
-          <div className="container-fluid">
-            <div className="w-100 d-flex justify-content-end gap-3">
-              <button type="button" className="btn btn-outline-primary p-2" onClick={handleLoginClick}>
-                Login
-              </button>
-              <button type="button" className="btn btn-primary p-2" onClick={handleSignupClick}>
-                Sign Up
-              </button>
-            </div>
-          </div>
+        </div>
       </nav>
     </>
   );

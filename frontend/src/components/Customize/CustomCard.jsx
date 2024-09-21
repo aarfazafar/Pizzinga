@@ -122,7 +122,7 @@ const CustomCard = ({
   
 
   const calculateTotal = () => {
-    return Math.floor(((price[`${size}`]*30) + (baseChosen.cost + cheeseChosen.cost + sauceChosen.cost+ toppingChosen.cost))*count)
+    return Math.ceil(((price[`${size}`]*30) + (baseChosen.cost + cheeseChosen.cost + sauceChosen.cost+ toppingChosen.cost))*count)
   }
   const addIngredients = (item, type, ingredientCost) => {
     console.log(type);
