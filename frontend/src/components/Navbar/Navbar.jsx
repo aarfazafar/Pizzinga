@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Screenshot_2024-09-16_181805-removebg-preview.png";
+import { Badge } from "react-bootstrap";
 import "./navbar.css";
-
+import cartIcon from "../../assets/image.png";
+import { useCart } from "../../Store/context-store";
 
 const Navbar = () => {
-  const navigate = useNavigate()
+  const data = useCart()
+  const navigate = useNavigate();
+  const [cartWindow, setCartWindow] = useState(false);
   const handleLoginClick = (e) => {
     e.preventDefault();
     window.location.href = "/login";
@@ -16,9 +20,9 @@ const Navbar = () => {
   };
   const handleLogoutClick = (e) => {
     // console.log('out')
-    localStorage.removeItem("authToken")
-    navigate('/')
-  }
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -78,23 +82,37 @@ const Navbar = () => {
           <div className="w-100 d-flex justify-content-end gap-3">
             {localStorage.getItem("authToken") ? (
               <>
-               <button
+                <Link
+                  type="button"
+                  className="btn btn-primary p-2 cart-btn"
+                  style={{ position: "relative" }}
+                  // onClick={() => setCartWindow(true)}
+                  to='/cart'
+                >
+                  Cart{" "}
+                  <img
+                    src={cartIcon}
+                    style={{ filter: "invert(1)" }}
+                    width="18rem"
+                  ></img>{" "}
+                  <Badge
+                    pill
+                    bg="success"
+                    style={{ position: "absolute", top: "0" }}
+                  >
+                    {data.length}
+                  </Badge>
+                </Link>
+                <button
                   type="button"
                   className="btn btn-outline-primary p-2"
                   onClick={handleLogoutClick}
                 >
                   Log out
                 </button>
-                  <button
-                  type="button"
-                  className="btn btn-primary p-2"
-                  // onClick={handleLoginClick}
-                >
-                  Cart
-                </button>
               </>
-              // </div>
             ) : (
+              // </div>
               <>
                 <button
                   type="button"

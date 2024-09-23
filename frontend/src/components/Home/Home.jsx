@@ -4,25 +4,18 @@ import Card from "../Card/Card";
 import { useEffect } from "react";
 import "./home.css";
 import CustomCard from "../Customize/CustomCard";
-import { CardELements } from "../../Store/context-store";
-// const qty = [1,2,3, 4,5,6];
-// const size = ['Regular', 'Large','Medium']
 
 const Home = () => {
   const [pizzaList, setPizzaList] = useState([]);
   const [customPizza, setCustomPizza] = useState({
     name: "",
     description: "",
-    image: "",
+    image_url: "",
   });
   const [search, setSearch] = useState("");
   const [price, setPrice] = useState([]);
-  // const [totalPrice, setTotalPrice] = useState([]);
   const [toCustomize, setToCustomize] = useState(false);
   const handleCustomization = (cardProps) => {
-    // console.log(e.target.parentNode.parentNode.parentNode.parentNode)
-    const { name, description, price, image } = cardProps;
-    // console.log(price)
     setCustomPizza({ ...cardProps });
     setToCustomize(true);
   };
@@ -41,18 +34,12 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    const fetchPizzaData = async () => {
+      await fetchData();
+    };
+    fetchPizzaData();
   }, []);
   return (
-    <CardELements.Provider
-      value={{
-        price,
-        // count,
-        // handleQtyChange,
-        // handleSizeChange
-        // calculateTotal
-      }}
-    >
       <div className="home-body">
         <Navbar />
         {/* <div className="banner">
@@ -60,10 +47,6 @@ const Home = () => {
       </div> */}
         <form className=" d-flex justify-content-center">
           {" "}
-          {/* justify-content-center, copy this <form> from navbar for search box */}
-          {/* <button className="btn text-white bg-success" type="submit">
-            Search
-          </button> */}
         </form>
         <div className="menu-content">
           <div className="container">
@@ -91,15 +74,10 @@ const Home = () => {
                       <>
                         <Card
                           key={pizza._id}
-                          name={pizza.name}
-                          description={pizza.description}
-                          image={pizza.image_url}
-                          price={pizza.price}
+                          pizza = {pizza}
+
                           handleCustomization={handleCustomization}
                         />
-                        {/* {pizzaList==[] && (
-                          <h1 className="container">Oops no items</h1>
-                        )} */}
                       </>
                     );
                   })}
@@ -107,9 +85,11 @@ const Home = () => {
           </div>
           <div className="custom">
             <CustomCard
+              key={customPizza._id}
+              id = {customPizza._id}
               name={customPizza.name}
               description={customPizza.description}
-              image={customPizza.image}
+              image={customPizza.image_url}
               price={customPizza.price}
               toCustomize={toCustomize}
             />
@@ -117,7 +97,6 @@ const Home = () => {
         </div>
         Footer
       </div>
-    </CardELements.Provider>
   );
 };
 
