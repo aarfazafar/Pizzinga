@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useCart, useDispatch } from "../../Store/context-store";
 import Navigator from "../Navbar/Navigator";
 import "./cart.css";
+import emptyCart from "../../assets/emptyCart.jpg";
 export default function Cart() {
   let data = useCart();
   let dispatch = useDispatch();
@@ -10,14 +11,28 @@ export default function Cart() {
     return (
       <>
         <Navigator />
-      <div className="container mt-5 text-center">
-        <h2 className="fs-3">Your Cart is Empty!</h2>
-      </div>
+        <div
+          className="container d-flex justify-content-center align-items-center"
+          style={{ height: "90vh" }}
+        >
+          <div className="text-center">
+            <img
+              src={emptyCart}
+              alt="Empty Cart"
+              className="img-fluid mb-4"
+              style={{ maxWidth: "300px" }} 
+            />
+            <h4 className="mt-2 fs-3" style={{paddingLeft:'3rem'}}>Your cart is empty</h4>
+            <p className="text-muted mt-3" style={{paddingLeft:'3rem'}}>
+              Looks like you haven't added anything to your cart. Go ahead &
+              explore top categories.
+            </p>
+          </div>
+        </div>
       </>
     );
   }
 
-  
   useEffect(() => {
     console.log(data);
   }, []);
@@ -43,7 +58,6 @@ export default function Cart() {
   let totalPrice = data.reduce((total, pizza) => total + pizza.price, 0);
 
   return (
-
     <>
       <div className="navigator">
         <Navigator />
@@ -60,30 +74,27 @@ export default function Cart() {
                 <th scope="col">Summary</th>
                 <th scope="col">Sub Total</th>
                 <th scope="col">Edit</th>
-                {/* <th scope="col"></th> */}
               </tr>
             </thead>
             <tbody>
               {data.map((pizza, index) => (
-                
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{pizza.name}</td>
                   <td>{pizza.count}</td>
                   <td>{pizza.size}</td>
-                  {!pizza.ingredients.baseChosen.name? (
-                    <p>Regular Pizza</p>
+                  {!pizza.ingredients.baseChosen.name ? (
+                    <td>Regular Pizza</td>
                   ) : (
                     <>
-                      <td>
-                      <p>{pizza.ingredients.baseChosen.name}</p>
+                      <td style={{ height: "100%" }}>
+                        <p>{pizza.ingredients.baseChosen.name}</p>
                         <p>{pizza.ingredients.cheeseChosen.name}</p>
                         <p>{pizza.ingredients.sauceChosen.name}</p>
                         <p>{pizza.ingredients.toppingChosen.name}</p>
                       </td>
                     </>
-                  )
-                  }
+                  )}
                   <td>{pizza.price}</td>
                   <td>
                     <button

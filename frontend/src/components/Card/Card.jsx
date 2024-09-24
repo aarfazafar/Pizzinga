@@ -1,32 +1,27 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useCart } from "../../Store/context-store";
 
 import "./card.css";
-// import { CardELements } from "../../Store/context-store";
 const Card = ({ pizza, handleCustomization }) => {
-  const {_id, name, description, image_url, price} = pizza
+  const { _id, name, description, image_url, price } = pizza;
   const [count, setCount] = useState(1);
   const [size, setSize] = useState("regular");
-  const emitProps = (_id,name, description, price, image_url) => {
-    handleCustomization({_id,  name, description, price, image_url });
+  const emitProps = (_id, name, description, price, image_url) => {
+    handleCustomization({ _id, name, description, price, image_url });
   };
   const handleQtyChange = (event) => {
+    event.preventDefault();
     console.log(event.target.value);
     setCount(event.target.value);
     // console.log(price)
   };
   const handleSizeChange = (event) => {
+    event.preventDefault();
     setSize(event.target.value);
     // console.log(price)
   };
 
-
-  const [isMounted, setIsMounted] = useState(false);
-  const [baseChosen, setBaseChosen] = useState({ name: "", cost: 0 });
-  const [cheeseChosen, setCheeseChosen] = useState({ name: "", cost: 0 });
-  const [sauceChosen, setSauceChosen] = useState({ name: "", cost: 0 });
-  const [toppingChosen, setToppingChosen] = useState({ name: "", cost: 0 });
   const [ingredients, setIngredients] = useState({
     baseChosen: "",
     cheeseChosen: "",
@@ -37,14 +32,7 @@ const Card = ({ pizza, handleCustomization }) => {
   // let totalPrice =  Math.ceil((price[`${size}`]*30)*count);
 
   const calculateTotal = () => {
-    return Math.ceil(
-      (price[`${size}`] * 30 +
-        (baseChosen.cost +
-          cheeseChosen.cost +
-          sauceChosen.cost +
-          toppingChosen.cost)) *
-        count
-    );
+    return Math.ceil(price[`${size}`] * 30 * count);
   };
   let dispatch = useDispatch();
   let data = useCart();
@@ -53,13 +41,13 @@ const Card = ({ pizza, handleCustomization }) => {
     e.preventDefault();
     await dispatch({
       type: "ADD",
-      id,
+      id: _id,
       name,
-      image,
+      image: image_url,
       price: calculateTotal(),
       count,
       size,
-      ingredients: ingredients
+      ingredients: ingredients,
     });
     setAddedTocart(true);
   };
@@ -109,7 +97,12 @@ const Card = ({ pizza, handleCustomization }) => {
           </div>
 
           <div className="d-flex justify-content-between gap-5  cart-btn pt-3">
-            <button className="btn btn-primary custom-btn" onClick={()=>emitProps(_id, name, description, price, image_url)}>
+            <button
+              className="btn btn-primary custom-btn"
+              onClick={() =>
+                emitProps(_id, name, description, price, image_url)
+              }
+            >
               Customise
             </button>
             {!addedToCart ? (

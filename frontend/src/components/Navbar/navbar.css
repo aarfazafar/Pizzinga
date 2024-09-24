@@ -47,6 +47,9 @@
 .navbar {
   padding-left: 1rem;
   padding-right: 1rem;
+  position: fixed;
+  width: 100vw;
+  z-index: 100;
 }
 .logo {
   color: #f06d3a;

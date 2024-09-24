@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import { useEffect } from "react";
 import "./home.css";
 import CustomCard from "../Customize/CustomCard";
+import DashBoard from "./Screens/DashBoard";
 
 const Home = () => {
   const [pizzaList, setPizzaList] = useState([]);
@@ -13,7 +14,6 @@ const Home = () => {
     image_url: "",
   });
   const [search, setSearch] = useState("");
-  const [price, setPrice] = useState([]);
   const [toCustomize, setToCustomize] = useState(false);
   const handleCustomization = (cardProps) => {
     setCustomPizza({ ...cardProps });
@@ -40,63 +40,58 @@ const Home = () => {
     fetchPizzaData();
   }, []);
   return (
-      <div className="home-body">
-        <Navbar />
-        {/* <div className="banner">
-        Banner
-      </div> */}
-        <form className=" d-flex justify-content-center">
+    <div className="home-body">
+      <Navbar />
+      {/* <form className=" d-flex justify-content-center">
           {" "}
-        </form>
-        <div className="menu-content">
-          <div className="container">
-            <div className="d-flex w-75 justify-content-between">
-              <h4 className="title">Menu</h4>
-              <input
-                className="form-control me-2 w-50 bg-white text-dark"
-                type="search"
-                placeholder="Type in..."
-                aria-label="Search"
-                value={search}
-                onChange={handleSearch}
-              />
-            </div>
-            <div className="menu">
-              {pizzaList &&
-                pizzaList
-                  .filter((item) => {
-                    return item.name
-                      .toLowerCase()
-                      .includes(search.toLowerCase());
-                  })
-                  .map((pizza) => {
-                    return (
-                      <>
-                        <Card
-                          key={pizza._id}
-                          pizza = {pizza}
-
-                          handleCustomization={handleCustomization}
-                        />
-                      </>
-                    );
-                  })}
-            </div>
-          </div>
-          <div className="custom">
-            <CustomCard
-              key={customPizza._id}
-              id = {customPizza._id}
-              name={customPizza.name}
-              description={customPizza.description}
-              image={customPizza.image_url}
-              price={customPizza.price}
-              toCustomize={toCustomize}
+        </form> */}
+      <DashBoard/>
+      <div className="menu-content">
+        <div className="container">
+          <div className="d-flex w-75 justify-content-between">
+            <h4 className="title">Menu</h4>
+            <input
+              className="form-control me-2 w-50 bg-white text-dark search-bar"
+              type="search"
+              placeholder="Type in..."
+              aria-label="Search"
+              value={search}
+              onChange={handleSearch}
             />
           </div>
+          <div className="menu">
+            {pizzaList &&
+              pizzaList
+                .filter((item) => {
+                  return item.name.toLowerCase().includes(search.toLowerCase());
+                })
+                .map((pizza) => {
+                  return (
+                    <>
+                      <Card
+                        key={pizza._id}
+                        pizza={pizza}
+                        handleCustomization={handleCustomization}
+                      />
+                    </>
+                  );
+                })}
+          </div>
         </div>
-        Footer
+        <div className="custom">
+          <CustomCard
+            key={customPizza._id}
+            id={customPizza._id}
+            name={customPizza.name}
+            description={customPizza.description}
+            image={customPizza.image_url}
+            price={customPizza.price}
+            toCustomize={toCustomize}
+          />
+        </div>
       </div>
+      {/* Footer */}
+    </div>
   );
 };
 

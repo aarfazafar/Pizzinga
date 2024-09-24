@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useRef} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Screenshot_2024-09-16_181805-removebg-preview.png";
 import { Badge } from "react-bootstrap";
@@ -23,6 +23,10 @@ const Navbar = () => {
     localStorage.removeItem("authToken");
     navigate("/");
   };
+  const sectionRef = useRef(null);
+  const handleScroll = () => {
+    sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -61,13 +65,13 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <button className="nav-link" onClick={handleScroll}>
                   Menu
-                </Link>
+                </button>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/">
-                  About us
+                  My Orders
                 </Link>
               </li>
               <li className="nav-item">

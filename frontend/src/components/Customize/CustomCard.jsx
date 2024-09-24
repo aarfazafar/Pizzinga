@@ -165,6 +165,9 @@ const CustomCard = ({
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
+    if(!localStorage.getItem("authToken")) {
+      window.location.href = "/login";
+    }
     await dispatch({
       type: "ADD",
       id,
