@@ -62,12 +62,12 @@ export default function Cart() {
       <div className="navigator">
         <Navigator />
       </div>
-      <div className="container mt-5">
+      <div className="container cart-body">
         <div className="table-responsive">
           <table className="table table-hover">
-            <thead className="fs-4 cart-header">
+            <thead className="cart-header">
               <tr>
-                <th scope="col">#</th>
+                <th  scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Qty</th>
                 <th scope="col">Size</th>

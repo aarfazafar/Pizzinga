@@ -1,106 +1,127 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar/Navbar";
-
+import orderImage from '../assets/orders.avif'
+import './myorders.css'
+import Navigator from "./Navbar/Navigator";
 const MyOrders = () => {
-  const [orderData, setorderData] = useState({});
-
+  const [orderData, setOrderData] = useState([]);
   const fetchMyOrder = async () => {
-    console.log(localStorage.getItem("userEmail"));
-    await fetch("http://localhost:5000/api/auth/myOrderData", {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: localStorage.getItem("userEmail"),
-      }),
-    }).then(async (res) => {
-      let response = await res.json();
-      await setorderData(response);
-    });
-
-    // await res.map((data)=>{
-    //    console.log(data)
-    // })
+    try {
+      const response = await fetch("http://localhost:3000/api/myOrderData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: localStorage.getItem("userEmail"),
+        }),
+      });
+      const data = await response.json();
+      setOrderData(data.orderData?.order_data || []);
+    } catch (error) {
+      console.error("Error fetching order data:", error);
+    }
   };
 
   useEffect(() => {
     fetchMyOrder();
   }, []);
+  const calculateTotal =(order) => {
+    // order.reduce((total, )=> {
 
+    // }) 
+    let total = 0
+    for(let i = 1; i < order.length; i++) {
+      total = total+order[i].price    }
+      return total
+
+  }
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
-
-      <div className="container">
+      <Navigator />
+      <div className="container order-data">
         <div className="row">
-          {!orderData
-            ? Array(orderData).map((data) => {
-                return data.orderData
-                  ? data.orderData.order_data
-                      .slice(0)
-                      .reverse()
-                      .map((item) => {
-                        return item.map((arrayData) => {
-                          return (
-                            <div>
-                              {arrayData.Order_date ? (
-                                <div className="m-auto mt-5">
-                                  {(data = arrayData.Order_date)}
-                                  <hr />
-                                </div>
-                              ) : (
-                                <div className="col-12 col-md-6 col-lg-3">
-                                  <div
-                                    className="card mt-3"
-                                    style={{
-                                      width: "16rem",
-                                      maxHeight: "360px",
-                                    }}
-                                  >
-                                    <img
-                                      src={arrayData.img}
-                                      className="card-img-top"
-                                      alt="..."
-                                      style={{
-                                        height: "120px",
-                                        objectFit: "fill",
-                                      }}
-                                    />
-                                    <div className="card-body">
-                                      <h5 className="card-title">
-                                        {arrayData.name}
-                                      </h5>
-                                      <div
-                                        className="container w-100 p-0"
-                                        style={{ height: "38px" }}
-                                      >
-                                        <span className="m-1">
-                                          {arrayData.qty}
-                                        </span>
-                                        <span className="m-1">
-                                          {arrayData.size}
-                                        </span>
-                                        <span className="m-1">{data}</span>
-                                        <div className=" d-inline ms-2 h-100 w-20 fs-5">
-                                          ₹{arrayData.price}/-
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
+          {orderData.length > 0 ? (
+            orderData.map((order, orderIndex) => (
+              <div key={orderIndex} className="col-12">
+                <h3 className="mt-3 order-date">Order Date: {order[0]?.Order_date}</h3>
+                <hr />
+                <div className="row">
+                  {order.slice(1).map((item, itemIndex) => (
+                    <div
+                      key={itemIndex}
+                      className="col-12 col-md-6 col-lg-3 mb-4"
+                    >
+                      <div className="card order-card" style={{ width: "16rem" }}>
+                        <img
+                          src={item.image}
+                          className="card-img-top"
+                          alt={item.name}
+                          style={{ height: "140px", objectFit: "cover" }}
+                        />
+                        <div className="card-body">
+                          <h5 className="card-title ordered-card-title">{item.name}</h5>
+                          <p className="card-text order-details">
+                            Quantity: {item.count}
+                            <br />
+                            Size: {item.size}
+                            <br />
+                            Price: ₹{item.price}/-
+                          </p>
+                          {item.ingredients && (
+                            <div className="mt-3">
+                              <div className='order-description'>
+                                {item.ingredients.baseChosen && (
+                                  <p>
+                                    Base: {item.ingredients.baseChosen.name} 
+                                  </p>
+                                )}
+                                {item.ingredients.cheeseChosen && item.ingredients.cheeseChosen.name && (
+                                  <p>
+                                    Cheese: {item.ingredients.cheeseChosen.name} 
+                                  </p>
+                                )}
+                                {item.ingredients.sauceChosen && (
+                                  <p>
+                                    Sauce: {item.ingredients.sauceChosen.name}
+                                  </p>
+                                )}
+                                {item.ingredients.toppingChosen && (
+                                  <p>
+                                    Topping: {item.ingredients.toppingChosen.name}
+                                  </p>
+                                )}
+                              </div>
                             </div>
-                          );
-                        });
-                      })
-                  : "";
-              })
-            : ""}
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+            <div className="card-title mb-1"> Order Total: ₹ {calculateTotal(order)}/-</div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div
+          className="container d-flex justify-content-center align-items-center"
+          style={{ height: "90vh" }}
+        >
+          <div className="text-center">
+            <img
+              src={orderImage}
+              alt="Empty Cart"
+              className="img-fluid mb-4"
+              style={{ maxWidth: "300px" }} 
+            />
+            <h4 className="mt-2 fs-3" style={{paddingLeft:'3rem'}}>No Orders Found</h4>
+            <p className="text-muted mt-3" style={{paddingLeft:'3rem'}}>
+              Looks like you haven't made any order. Go ahead &
+              explore top categories.
+            </p>
+          </div>
+        </div>
+          )}
         </div>
       </div>
     </div>

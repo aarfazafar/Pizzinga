@@ -48,6 +48,7 @@
   padding-left: 1rem;
   padding-right: 1rem;
   position: fixed;
+  top:0;
   width: 100vw;
   z-index: 100;
 }

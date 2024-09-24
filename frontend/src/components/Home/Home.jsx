@@ -32,7 +32,10 @@ const Home = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
-
+  const [menuClicked, setMenuClicked]  = useState(false)
+  const handleScroll = (value)=> {
+    setMenuClicked(value)
+  }
   useEffect(() => {
     const fetchPizzaData = async () => {
       await fetchData();
@@ -41,12 +44,9 @@ const Home = () => {
   }, []);
   return (
     <div className="home-body">
-      <Navbar />
-      {/* <form className=" d-flex justify-content-center">
-          {" "}
-        </form> */}
-      <DashBoard/>
-      <div className="menu-content">
+      <Navbar menuClicked={menuClicked} setMenuClicked={setMenuClicked} handleScroll={handleScroll}/>
+      <DashBoard menuClicked={menuClicked} setMenuClicked={setMenuClicked}/>
+      <div id ="menu-page" className="menu-content">
         <div className="container">
           <div className="d-flex w-75 justify-content-between">
             <h4 className="title">Menu</h4>

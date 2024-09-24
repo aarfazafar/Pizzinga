@@ -6,10 +6,9 @@ import "./navbar.css";
 import cartIcon from "../../assets/image.png";
 import { useCart } from "../../Store/context-store";
 
-const Navbar = () => {
+const Navbar = ({menuClicked, setMenuClicked, handleScroll}) => {
   const data = useCart()
   const navigate = useNavigate();
-  const [cartWindow, setCartWindow] = useState(false);
   const handleLoginClick = (e) => {
     e.preventDefault();
     window.location.href = "/login";
@@ -24,9 +23,6 @@ const Navbar = () => {
     navigate("/");
   };
   const sectionRef = useRef(null);
-  const handleScroll = () => {
-    sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -60,17 +56,17 @@ const Navbar = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/">
+                <Link className="nav-link" aria-current="page" to="/" onClick={()=> setMenuClicked(false)}>
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <button className="nav-link" onClick={handleScroll}>
+                <button className="nav-link" onClick={()=> handleScroll(true)}>
                   Menu
                 </button>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/myorder">
                   My Orders
                 </Link>
               </li>

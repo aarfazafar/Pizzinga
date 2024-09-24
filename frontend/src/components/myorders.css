@@ -1,0 +1,33 @@
+.order-data {
+  margin-top: 5rem;
+}
+.order-card {
+  min-height: 22rem;
+}
+
+.ordered-card-title {
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 0.02rem;
+}
+.order-details {
+  font-family: cursive;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  color:#706e6e;
+}
+
+.order-description {
+  color:gray;
+  font-weight: lighter;
+  font-family: cursive;
+  font-size: 0.8rem;
+  line-height: 0.2rem;
+  letter-spacing: 0.02rem;
+}
+.order-date {
+  color:chocolate;
+  font-size: 1.4rem;
+  font-family: cursive;
+
+}
