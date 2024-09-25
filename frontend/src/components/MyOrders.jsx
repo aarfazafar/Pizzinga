@@ -27,9 +27,6 @@ const MyOrders = () => {
     fetchMyOrder();
   }, []);
   const calculateTotal =(order) => {
-    // order.reduce((total, )=> {
-
-    // }) 
     let total = 0
     for(let i = 1; i < order.length; i++) {
       total = total+order[i].price    }
@@ -99,7 +96,7 @@ const MyOrders = () => {
                     </div>
                   ))}
             <div className="card-title mb-1"> Order Total: ₹ {calculateTotal(order)}/-</div>
-                  <button className="btn btn-danger mt-4" style={{width:'8rem'}} onClick={()=> console.log('') //here
+                  <button className="btn btn-danger mt-3" style={{width:'8rem', margin:'1rem'}} onClick={()=> console.log('') //here
                   }>Cancel Order</button>
                 </div>
               </div>

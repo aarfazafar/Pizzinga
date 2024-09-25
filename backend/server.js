@@ -4,6 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const connectToDatabase = require("./models/db");
 connectToDatabase();
+const dotenv = require('dotenv')
 
 
 const corsOptions = {
@@ -13,6 +14,8 @@ const corsOptions = {
 
 // Use CORS middleware
 app.use(cors(corsOptions));
+dotenv.config()
+
 
 app.get("/", (req, res) => {
   res.send("Hello from server");
