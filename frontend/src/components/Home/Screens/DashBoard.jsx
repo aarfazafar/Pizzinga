@@ -37,11 +37,11 @@ const DashBoard = ({menuClicked, setMenuClicked}) => {
           </div>
         </div>
 
-        <div className="row mt-5 text-center" ref={ServicesRef} >
+        <div className="row mt-5 text-center"  >
           <div className="col-md-4 d-flex">
             <div className="d-flex flex-column">
             <h4 className='foot-title'>Customizable</h4>
-            <p>
+            <p ref={ServicesRef}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
               saepe adipisci! Nesciunt.
             </p>

@@ -43,7 +43,9 @@
   margin: 1rem 0;
 
 }
-
+.custom-box{
+  height: 100%;
+}
 .custom-footer {
 position: sticky;
 bottom: 0;

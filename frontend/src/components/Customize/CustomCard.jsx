@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./customcard.css";
 import SelectOptions from "./SelectOptions";
+import customizePizza from '../../assets/customizePizza.jpeg'
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useDispatch, useCart } from "../../Store/context-store";
 const CustomCard = ({
@@ -288,7 +289,7 @@ const CustomCard = ({
             {!addedToCart ? (
               <button
                 onClick={handleAddToCart}
-                className="btn btn-primary custom-btn"
+                className="btn btn-primary" style={{backgroundColor: '#7a604d' ,border:'2px solid #7a604d'}}
               >
                 Add to Cart
               </button>
@@ -300,11 +301,12 @@ const CustomCard = ({
           </div>
         </>
       ) : (
-        <div className="text-center p-5 border rounded bg-light">
+        <div className="text-center p-5 border rounded bg-light custom-box d-flex flex-column justify-content-center">
+          <img className='border rounded' src={customizePizza} alt="" />
           <i className="bi bi-pizza fs-1 mb-3"></i>
-          <h2>Customize Your Own Pizza</h2>
-          <p>Select a pizza to start customizing your perfect pizza.</p>
-          <button>Start Customizing</button>
+          <h2  style={{fontFamily:"'Patrick Hand', cursive", fontWeight:'bold'}}>Customize Your Own Pizza!</h2>
+          <p style={{ fontWeight:'light'}}>Select a pizza to start customizing your perfect pizza.</p>
+          <button className="btn btn-outline-primary">Start</button>
         </div>
       )}
     </div>
