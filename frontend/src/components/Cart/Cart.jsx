@@ -3,6 +3,8 @@ import { useCart, useDispatch } from "../../Store/context-store";
 import Navigator from "../Navbar/Navigator";
 import "./cart.css";
 import emptyCart from "../../assets/emptyCart.jpg";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Cart() {
   let data = useCart();
   let dispatch = useDispatch();
@@ -52,6 +54,29 @@ export default function Cart() {
     console.log("JSON RESPONSE: ", response.status);
     if (response.status === 200) {
       dispatch({ type: "DROP" });
+    }
+    if (response.status) {
+      toast.success('Order Placed 🎉', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    } else {
+      toast.error('Failed to check out', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
     }
   };
 

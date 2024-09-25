@@ -99,6 +99,8 @@ const MyOrders = () => {
                     </div>
                   ))}
             <div className="card-title mb-1"> Order Total: ₹ {calculateTotal(order)}/-</div>
+                  <button className="btn btn-danger mt-4" style={{width:'8rem'}} onClick={()=> console.log('') //here
+                  }>Cancel Order</button>
                 </div>
               </div>
             ))

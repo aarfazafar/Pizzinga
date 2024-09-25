@@ -3,17 +3,16 @@ import Bg from "../../../assets/9824651.jpg";
 import "../home.css";
 const DashBoard = ({menuClicked, setMenuClicked}) => {
   const ServicesRef = useRef(null);
-  // if(menuClicked) {
     const gotoServices = () => {
     ServicesRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuClicked(false)
     }
 
-  // }
-  useEffect(()=> {
-    gotoServices()
-    console.log(menuClicked)
-  }, [menuClicked])
+    useEffect(() => {
+      if (menuClicked) {
+        gotoServices(); 
+      }
+    }, [menuClicked]);
   return (
     <div className="banner-container p-0 m-0">
       <img

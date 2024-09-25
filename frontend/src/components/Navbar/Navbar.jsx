@@ -1,4 +1,4 @@
-import React, { useState , useRef} from "react";
+import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Screenshot_2024-09-16_181805-removebg-preview.png";
 import { Badge } from "react-bootstrap";
@@ -6,8 +6,8 @@ import "./navbar.css";
 import cartIcon from "../../assets/image.png";
 import { useCart } from "../../Store/context-store";
 
-const Navbar = ({menuClicked, setMenuClicked, handleScroll}) => {
-  const data = useCart()
+const Navbar = ({ menuClicked, setMenuClicked, handleScroll }) => {
+  const data = useCart();
   const navigate = useNavigate();
   const handleLoginClick = (e) => {
     e.preventDefault();
@@ -18,9 +18,11 @@ const Navbar = ({menuClicked, setMenuClicked, handleScroll}) => {
     window.location.href = "/register";
   };
   const handleLogoutClick = (e) => {
-    // console.log('out')
     localStorage.removeItem("authToken");
     navigate("/");
+  };
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   const sectionRef = useRef(null);
   return (
@@ -38,17 +40,7 @@ const Navbar = ({menuClicked, setMenuClicked, handleScroll}) => {
             <h3 className="d-inline logo fst-italic ms-1">Pizzinga</h3>
           </Link>
         </div>
-        {/* <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="/navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button> */}
+
         <div className="container-fluid">
           <div
             className="collapse navbar-collapse w-100 d-flex justify-content-center"
@@ -56,20 +48,31 @@ const Navbar = ({menuClicked, setMenuClicked, handleScroll}) => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/" onClick={()=> setMenuClicked(false)}>
+                <Link
+                  className="nav-link"
+                  aria-current="page"
+                  to="/"
+                  onClick={() => {
+                    setMenuClicked(false);
+                    scrollToTop();
+                  }}
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <button className="nav-link" onClick={()=> handleScroll(true)}>
+                <button className="nav-link" onClick={() => handleScroll(true)}>
                   Menu
                 </button>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/myorder">
-                  My Orders
-                </Link>
-              </li>
+              {localStorage.getItem("authToken") && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/myorder">
+                    My Orders
+                  </Link>
+                </li>
+              )}
+
               <li className="nav-item">
                 <Link className="nav-link" to="/">
                   Contact Us
@@ -86,8 +89,7 @@ const Navbar = ({menuClicked, setMenuClicked, handleScroll}) => {
                   type="button"
                   className="btn btn-primary p-2 cart-btn"
                   style={{ position: "relative" }}
-                  // onClick={() => setCartWindow(true)}
-                  to='/cart'
+                  to="/cart"
                 >
                   Cart{" "}
                   <img
@@ -112,7 +114,6 @@ const Navbar = ({menuClicked, setMenuClicked, handleScroll}) => {
                 </button>
               </>
             ) : (
-              // </div>
               <>
                 <button
                   type="button"

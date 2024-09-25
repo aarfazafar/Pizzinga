@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import './signup.css'
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Login = () => {
   const [credentials, setCredentials] = useState({email:'',password:''})
   let Navigate = useNavigate();
@@ -19,15 +22,31 @@ const Login = () => {
     console.log(json);
     console.log(  JSON.stringify({email:credentials.email,password:credentials.password}))
 
-    if(json.success) {
-
+    if (json.success) {
       localStorage.setItem("userEmail", credentials.email)
       localStorage.setItem("authToken", json.authToken)
-      // window.location.href = "/"
-      //Alternatively
       Navigate("/")
-      // console.log(localStorage.getItem("authToken"))
-
+      toast.success('Login successful! Welcome aboard 🎉', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    } else {
+      toast.error('Invalid Credentials Please try again.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
     }
   }
 

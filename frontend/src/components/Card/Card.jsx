@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useCart } from "../../Store/context-store";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./card.css";
 const Card = ({ pizza, handleCustomization }) => {
   const { _id, name, description, image_url, price } = pizza;
@@ -50,6 +51,16 @@ const Card = ({ pizza, handleCustomization }) => {
       ingredients: ingredients,
     });
     setAddedTocart(true);
+    toast.success("Added to cart 🎉", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
   const totalPrice = Math.ceil(price[`${size}`] * 30 * count);
 
@@ -58,7 +69,15 @@ const Card = ({ pizza, handleCustomization }) => {
       className="card"
       style={{ width: "18rem", maxHeight: "24rem", display: "inline-block" }}
     >
-      <img src={image_url} className="card-img-top custom-img" alt="..." />
+      <img
+        src={
+          image_url
+            ? image_url
+            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTog4ACm0vIRHdmml_FgepznxIz9arjHXx4gA&s"
+        }
+        className="card-img-top custom-img"
+        alt="..."
+      />
 
       <div className="card-body">
         <h5 className="card-title d-flex justify-content-between">

@@ -1,8 +1,11 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [credentials, setCredentials] = useState({name:'', email:'',password:'', location:''})
+  let Navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -15,7 +18,32 @@ const Register = () => {
     })
     const json = await response.json()
     console.log(json);
-    // console.log( JSON.stringify({name: credentials.name, email:credentials.email, location:credentials.location, password:credentials.password}))
+    if (json.success) {
+      localStorage.setItem("userEmail", credentials.email)
+      localStorage.setItem("authToken", json.authToken)
+      Navigate("/")
+      toast.success('Signup successful! Welcome aboard 🎉', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    } else {
+      toast.error('Signup failed. Please try again.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    }
   }
 
   const handleOnChange = (event) => {

@@ -5,6 +5,8 @@ import SelectOptions from "./SelectOptions";
 import customizePizza from '../../assets/customizePizza.jpeg'
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useDispatch, useCart } from "../../Store/context-store";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const CustomCard = ({
   id,
   name = "pizza",
@@ -180,6 +182,16 @@ const CustomCard = ({
       ingredients: ingredients,
     });
     setAddedTocart(true);
+    toast.success("Added to cart 🎉", {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
   
   useEffect(() => {
