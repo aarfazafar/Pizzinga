@@ -8,19 +8,16 @@ const dotenv = require('dotenv')
 
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // Allow the frontend origin
+  origin: 'http://localhost:5173', 
   optionsSuccessStatus: 200,
 };
 
-// Use CORS middleware
 app.use(cors(corsOptions));
 dotenv.config()
-
 
 app.get("/", (req, res) => {
   res.send("Hello from server");
 });
-
 
 app.use(express.json());
 app.use("/api", require("./Routes/createUser"));
@@ -34,6 +31,9 @@ app.use("/api", require("./Routes/MyOrderData"));
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
+
+
+
 // app.use((req, res, next)=> {
 //   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")

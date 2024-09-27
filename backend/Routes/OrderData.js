@@ -12,6 +12,7 @@ router.post("/orderData", async (req, res) => {
     try {
       await Order.create({
         email: req.body.email,
+        address:req.body.address,
         order_data: [data],
       }).then(() => {
         res.json({ success: true });
@@ -24,6 +25,7 @@ router.post("/orderData", async (req, res) => {
     try {
       await Order.findOneAndUpdate(
         { email: req.body.email },
+        { $push: { address: req.body.address } },
         { $push: { order_data: data } }
       ).then(() => {
         res.json({ success: true });

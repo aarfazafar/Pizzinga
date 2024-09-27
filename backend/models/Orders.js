@@ -10,6 +10,10 @@ const OrderSchema = new Schema({
   order_data: {
     type: Array,
     required: true,
+  },
+  address: {
+    type: Object,
+    required: true,
   }
 })
 
