@@ -26,6 +26,7 @@ app.use("/api", require("./Routes/DisplayData"));
 app.use("/api", require("./Routes/userLogin"));
 app.use("/api", require("./Routes/OrderData"));
 app.use("/api", require("./Routes/MyOrderData"));
+app.use("/api", require("./Routes/DeleteOrder"));
 
 
 app.listen(PORT, () => {

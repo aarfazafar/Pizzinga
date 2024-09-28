@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar/Navbar";
-import orderImage from '../assets/orders.avif'
-import './myorders.css'
+import orderImage from "../assets/orders.avif";
+import "./myorders.css";
 import Navigator from "./Navbar/Navigator";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const MyOrders = () => {
   const [orderData, setOrderData] = useState([]);
   const fetchMyOrder = async () => {
@@ -23,16 +26,59 @@ const MyOrders = () => {
     }
   };
 
+  const deleteOrder = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/deleteOrder", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: localStorage.getItem("userEmail"),
+          // orderDate: orderDate,
+        }),
+      });
+
+      if (response.status) {
+        toast.success("Order Cancelled successfully", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        fetchMyOrder();
+      } else {
+        toast.error("Failed to cancel order", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      console.error("Error deleting order:", error);
+      alert("Error deleting order");
+    }
+  };
+
   useEffect(() => {
     fetchMyOrder();
   }, []);
-  const calculateTotal =(order) => {
-    let total = 0
-    for(let i = 1; i < order.length; i++) {
-      total = total+order[i].price    }
-      return total
-
-  }
+  const calculateTotal = (order) => {
+    let total = 0;
+    for (let i = 1; i < order.length; i++) {
+      total = total + order[i].price;
+    }
+    return total;
+  };
   return (
     <div>
       <Navigator />
@@ -41,7 +87,9 @@ const MyOrders = () => {
           {orderData.length > 0 ? (
             orderData.map((order, orderIndex) => (
               <div key={orderIndex} className="col-12">
-                <h3 className="mt-3 order-date">Order Date: {order[0]?.Order_date}</h3>
+                <h3 className="mt-3 order-date">
+                  Order Date: {order[0]?.Order_date}
+                </h3>
                 <hr />
                 <div className="row">
                   {order.slice(1).map((item, itemIndex) => (
@@ -49,7 +97,10 @@ const MyOrders = () => {
                       key={itemIndex}
                       className="col-12 col-md-6 col-lg-3 mb-4"
                     >
-                      <div className="card order-card" style={{ width: "16rem" }}>
+                      <div
+                        className="card order-card"
+                        style={{ width: "16rem" }}
+                      >
                         <img
                           src={item.image}
                           className="card-img-top"
@@ -57,7 +108,9 @@ const MyOrders = () => {
                           style={{ height: "140px", objectFit: "cover" }}
                         />
                         <div className="card-body">
-                          <h5 className="card-title ordered-card-title">{item.name}</h5>
+                          <h5 className="card-title ordered-card-title">
+                            {item.name}
+                          </h5>
                           <p className="card-text order-details">
                             Quantity: {item.count}
                             <br />
@@ -67,17 +120,19 @@ const MyOrders = () => {
                           </p>
                           {item.ingredients && (
                             <div className="mt-3">
-                              <div className='order-description'>
+                              <div className="order-description">
                                 {item.ingredients.baseChosen && (
                                   <p>
-                                    Base: {item.ingredients.baseChosen.name} 
+                                    Base: {item.ingredients.baseChosen.name}
                                   </p>
                                 )}
-                                {item.ingredients.cheeseChosen && item.ingredients.cheeseChosen.name && (
-                                  <p>
-                                    Cheese: {item.ingredients.cheeseChosen.name} 
-                                  </p>
-                                )}
+                                {item.ingredients.cheeseChosen &&
+                                  item.ingredients.cheeseChosen.name && (
+                                    <p>
+                                      Cheese:{" "}
+                                      {item.ingredients.cheeseChosen.name}
+                                    </p>
+                                  )}
                                 {item.ingredients.sauceChosen && (
                                   <p>
                                     Sauce: {item.ingredients.sauceChosen.name}
@@ -85,7 +140,8 @@ const MyOrders = () => {
                                 )}
                                 {item.ingredients.toppingChosen && (
                                   <p>
-                                    Topping: {item.ingredients.toppingChosen.name}
+                                    Topping:{" "}
+                                    {item.ingredients.toppingChosen.name}
                                   </p>
                                 )}
                               </div>
@@ -95,31 +151,41 @@ const MyOrders = () => {
                       </div>
                     </div>
                   ))}
-            <div className="card-title mb-1"> Order Total: ₹ {calculateTotal(order)}/-</div>
-                  <button className="btn btn-danger mt-3" style={{width:'8rem', margin:'1rem'}} onClick={()=> console.log('') //here
-                  }>Cancel Order</button>
+                  <div className="card-title mb-1">
+                    {" "}
+                    Order Total: ₹ {calculateTotal(order)}/-
+                  </div>
+                  <button
+                    className="btn btn-danger mt-3"
+                    style={{ width: "8rem", margin: "1rem" }}
+                    onClick={() => deleteOrder()}
+                  >
+                    Cancel Order
+                  </button>
                 </div>
               </div>
             ))
           ) : (
             <div
-          className="container d-flex justify-content-center align-items-center"
-          style={{ height: "90vh" }}
-        >
-          <div className="text-center">
-            <img
-              src={orderImage}
-              alt="Empty Cart"
-              className="img-fluid mb-4"
-              style={{ maxWidth: "300px" }} 
-            />
-            <h4 className="mt-2 fs-3" style={{paddingLeft:'3rem'}}>No Orders Found</h4>
-            <p className="text-muted mt-3" style={{paddingLeft:'3rem'}}>
-              Looks like you haven't made any order. Go ahead &
-              explore top categories.
-            </p>
-          </div>
-        </div>
+              className="container d-flex justify-content-center align-items-center"
+              style={{ height: "90vh" }}
+            >
+              <div className="text-center">
+                <img
+                  src={orderImage}
+                  alt="Empty Cart"
+                  className="img-fluid mb-4"
+                  style={{ maxWidth: "300px" }}
+                />
+                <h4 className="mt-2 fs-3" style={{ paddingLeft: "3rem" }}>
+                  No Orders Found
+                </h4>
+                <p className="text-muted mt-3" style={{ paddingLeft: "3rem" }}>
+                  Looks like you haven't made any order. Go ahead & explore top
+                  categories.
+                </p>
+              </div>
+            </div>
           )}
         </div>
       </div>

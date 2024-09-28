@@ -1,22 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const Order = require("../models/Orders");
 
 router.delete('/deleteOrder', async (req, res) => {
-  const { email, orderDate } = req.body;
+  const { email} = req.body;
   console.log(email)
-  console.log(orderDate)
+  // console.log(orderDate)
   try {
-    const result = await User.updateOne(
-      { email: email },
-      { $pull: { "orderData.order_data": { Order_date: orderDate } } }
-    );
-    
-    if (result.nModified > 0) {
-      res.status(200).json({ message: "Order deleted successfully!" });
-    } else {
+    await Order.deleteOne(
+      { email: email }
+      // { order_date: orderDate },
+
+
+      // { $pull: { "orderData.order_data": { Order_date: orderDate } } }
+    ).then(() => {
+      res.json({ success: true });
+    }).catch(()=> {
       res.status(404).json({ message: "Order not found!" });
-    }
+    })
   } catch (error) {
     res.status(500).json({ message: "Error deleting order", error });
   }
