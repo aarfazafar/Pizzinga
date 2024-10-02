@@ -32,10 +32,10 @@ const Home = () => {
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
-  const [menuClicked, setMenuClicked]  = useState(false)
-  const handleScroll = (value)=> {
-    setMenuClicked(value)
-  }
+  const [menuClicked, setMenuClicked] = useState(false);
+  const handleScroll = (value) => {
+    setMenuClicked(value);
+  };
   useEffect(() => {
     const fetchPizzaData = async () => {
       await fetchData();
@@ -44,9 +44,13 @@ const Home = () => {
   }, []);
   return (
     <div className="home-body">
-      <Navbar menuClicked={menuClicked} setMenuClicked={setMenuClicked} handleScroll={handleScroll}/>
-      <DashBoard menuClicked={menuClicked} setMenuClicked={setMenuClicked}/>
-      <div id ="menu-page" className="menu-content">
+      <Navbar
+        menuClicked={menuClicked}
+        setMenuClicked={setMenuClicked}
+        handleScroll={handleScroll}
+      />
+      <DashBoard menuClicked={menuClicked} setMenuClicked={setMenuClicked} />
+      <div id="menu-page" className="menu-content">
         <div className="container">
           <div className="d-flex w-75 justify-content-between">
             <h4 className="title">Menu</h4>
@@ -67,13 +71,11 @@ const Home = () => {
                 })
                 .map((pizza) => {
                   return (
-                    <>
-                      <Card
-                        key={pizza._id}
-                        pizza={pizza}
-                        handleCustomization={handleCustomization}
-                      />
-                    </>
+                    <Card
+                      key={pizza._id}
+                      pizza={pizza}
+                      handleCustomization={handleCustomization}
+                    />
                   );
                 })}
           </div>

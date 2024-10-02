@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Register from "./components/Auth/Register";
 import { CartProvider } from "./Store/context-store";
 import Cart from "./components/Cart/Cart";
-import MyOrders from "./components/MyOrders";
+import MyOrders from "./components/MyOrders/MyOrders";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function App() {

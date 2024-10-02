@@ -40,9 +40,13 @@
   color: #c25609;
   transition:font-weight 0.3s ease;
 }
-.nav-link:active, .nav-link:hover {
+.nav-link:active, .nav-link:hover{
   color: #c25609;
   font-weight:600;
+}
+.nav-link:visited {
+  color: #c25609;
+  font-weight:800;
 }
 .navbar {
   padding-left: 1rem;

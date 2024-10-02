@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar/Navbar";
-import orderImage from "../assets/orders.avif";
+import orderImage from "../../assets/orders.avif";
 import "./myorders.css";
-import Navigator from "./Navbar/Navigator";
+import Navigator from "../Navbar/Navigator"
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
