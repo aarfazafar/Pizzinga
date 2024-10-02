@@ -102,3 +102,6 @@ letter-spacing: 0.08rem;
   letter-spacing: 0.05rem;
   color:chocolate;
 }
+/* $carousel-transition-duration: 1s !default;
+$carousel-transition: 
+        transform $carousel-transition-duration ease-in !default; */
