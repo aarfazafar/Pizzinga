@@ -56,7 +56,7 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
             data-bs-ride="carousel"
           >
             <div class="carousel-inner">
-              <div class="carousel-item active" data-bs-interval="1500">
+              <div class="carousel-item active" data-bs-interval="4000" style={{height:"24vh", background:"#f8f9fa"}}>
                 <div className="row mt-5 text-center">
                   <div className="col-md-4 d-flex">
                     <div className="d-flex flex-column">
@@ -83,12 +83,12 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
                   </div>
                 </div>
               </div>
-              <div class="carousel-item" data-bs-interval="1500">
+              <div class="carousel-item" data-bs-interval="4000" style={{height:"24vh", background:"#f8f9fa"}}>
               <div className="row mt-5 text-center">
                   <div className="col-md-4 d-flex">
                     <div className="d-flex flex-column">
                       <h4 className="foot-title">Customizable</h4>
-                      <p ref={ServicesRef}>
+                      <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam vitae nostrum dolorum voluptate, error consectetur!
                       </p>
                     </div>
@@ -107,7 +107,7 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
                   </div>
                 </div>
               </div>
-              <div class="carousel-item" data-bs-interval="1500">
+              <div class="carousel-item" data-bs-interval="4000" style={{height:"24vh", background:"#f8f9fa"}}>
               <div className="row mt-5 text-center">
                   <div className="col-md-4 d-flex">
                     <div className="d-flex flex-column">
@@ -157,6 +157,7 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
               <span class="visually-hidden">Next</span>
             </button>
           </div>
+          <hr  ref={ServicesRef} />
         </div>
       </div>
     </div>
