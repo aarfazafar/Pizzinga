@@ -42,9 +42,9 @@ body {
   position: relative;
 }
 .title {
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
   letter-spacing: 0.08rem;
-  color:brown;
+  color: brown;
   font-weight: bold;
   font-size: 2rem;
 }
@@ -62,46 +62,47 @@ body {
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 .banner-head {
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
   font-size: 2.5rem;
   color: chocolate;
   line-height: 1rem;
   letter-spacing: 0.02rem;
 }
 .banner-head2 {
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
   font-size: 4.6rem;
   color: chocolate;
   line-height: 5rem;
 }
 .banner-sub-head {
   margin-top: 1rem;
-  font-family: 'Patrick Hand', cursive;
+  font-family: "Patrick Hand", cursive;
   letter-spacing: 0.08rem;
-  color:grey;
-
+  color: grey;
 }
 .banner-btn {
   margin: 0.2rem;
   height: 2.8rem;
-  border-radius: 1.5rem;;
-  width:8rem;
-  font-family: 'Patrick Hand', cursive;
-font-size: 1.1rem;
-letter-spacing: 0.08rem;
-
+  border-radius: 1.5rem;
+  width: 8rem;
+  font-family: "Patrick Hand", cursive;
+  font-size: 1.1rem;
+  letter-spacing: 0.08rem;
 }
 
-.qoute-head{
-  color:brown;
+.qoute-head {
+  color: brown;
 }
 
 .foot-title {
   font-family: cursive;
   font-size: 1.5rem;
   letter-spacing: 0.05rem;
-  color:chocolate;
+  color: chocolate;
 }
-/* $carousel-transition-duration: 1s !default;
-$carousel-transition: 
-        transform $carousel-transition-duration ease-in !default; */
+
+.carousel-item {
+  transition: transform 0.8s ease-in-out; /* Adjust the speed (0.6s) as per your requirement */
+  /* flex: 0 0 100%; Each item takes up 100% of the carousel width */
+}
+

@@ -52,43 +52,16 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
         >
           <div
             id="carouselExampleInterval"
-            class="carousel slide"
+            class="carousel slide w-100"
             data-bs-ride="carousel"
           >
             <div class="carousel-inner">
-              <div class="carousel-item active" data-bs-interval="1500">
-                <div className="row mt-5 text-center">
-                  <div className="col-md-4 d-flex">
-                    <div className="d-flex flex-column">
-                      <h4 className="foot-title">Customizable</h4>
-                      <p ref={ServicesRef}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Non, saepe adipisci! Nesciunt.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <h4 className="foot-title">Fresh</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Non, saepe adipisci! Nesciunt.
-                    </p>
-                  </div>
-                  <div className="col-md-4">
-                    <h4 className="foot-title">Fast Delivery</h4>
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Non, saepe adipisci! Nesciunt.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item" data-bs-interval="1500">
+            <div class="carousel-item active" data-bs-interval="4000"style={{backgroundColor: "blue"}}>
               <div className="row mt-5 text-center">
                   <div className="col-md-4 d-flex">
                     <div className="d-flex flex-column">
                       <h4 className="foot-title">Customizable</h4>
-                      <p ref={ServicesRef}>
+                      <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam vitae nostrum dolorum voluptate, error consectetur!
                       </p>
                     </div>
@@ -107,26 +80,50 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
                   </div>
                 </div>
               </div>
-              <div class="carousel-item" data-bs-interval="1500">
+              <div class="carousel-item" data-bs-interval="4000"style={{backgroundColor: "pink"}}>
               <div className="row mt-5 text-center">
                   <div className="col-md-4 d-flex">
                     <div className="d-flex flex-column">
                       <h4 className="foot-title">Customizable</h4>
-                      <p ref={ServicesRef}>
-                        Lorem ipsum dolor sit.
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam vitae nostrum dolorum voluptate, error consectetur!
                       </p>
                     </div>
                   </div>
                   <div className="col-md-4">
                     <h4 className="foot-title">Fresh</h4>
                     <p>
-                     Lorem ipsum dolor sit.
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam exercitationem earum, harum dolor hic amet!
                     </p>
                   </div>
                   <div className="col-md-4">
                     <h4 className="foot-title">Fast Delivery</h4>
                     <p>
-                      Lorem ipsum dolor sit.
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat tempore corporis rem.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="4000"style={{backgroundColor: "yellow"}}>
+              <div className="row mt-5 text-center">
+                  <div className="col-md-4 d-flex">
+                    <div className="d-flex flex-column">
+                      <h4 className="foot-title">Customizable</h4>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam vitae nostrum dolorum voluptate, error consectetur!
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <h4 className="foot-title">Fresh</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam exercitationem earum, harum dolor hic amet!
+                    </p>
+                  </div>
+                  <div className="col-md-4">
+                    <h4 className="foot-title">Fast Delivery</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat tempore corporis rem.
                     </p>
                   </div>
                 </div>
@@ -157,6 +154,7 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
               <span class="visually-hidden">Next</span>
             </button>
           </div>
+          <hr  ref={ServicesRef}></hr>
         </div>
       </div>
     </div>
