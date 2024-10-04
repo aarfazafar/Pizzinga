@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
+
 .home-body {
   width: 100vw;
   min-height: 100vh;
@@ -107,7 +111,7 @@ $carousel-transition:
 .foot-title {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 0.8rem;
   letter-spacing: 0.05rem;
 }
 
@@ -120,12 +124,15 @@ $carousel-transition:
   border: 1px solid red;
 }
 .capsule-img {
-  width: 4.5rem;
+  margin-top: 0.1rem;
+  width: 6rem;
   border-radius: 5rem;
 }
 
 .capsule {
-  width: 5rem;
+  width: 7rem;
+  height: 10rem;
+  font-size: 0.8rem;
   border-top-left-radius: 5rem;
   border-top-right-radius: 5rem;
   border-bottom-left-radius: 2rem;
