@@ -64,6 +64,36 @@ body {
   border: 1px solid black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeIn 0.8s ease-out forwards, scaleCard 2s ease-in-out 1.5s infinite;
+/* 
+  transition: all 0.3s ease;
+  animation: scaleCard 2s ease-in-out infinite; */
+}
+
+/* Fade-in effect on page load */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes scaleCard {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .banner-head {
   font-family: "Patrick Hand", cursive;
@@ -92,8 +122,21 @@ body {
   font-family: "Patrick Hand", cursive;
   font-size: 1.1rem;
   letter-spacing: 0.08rem;
+  transition: all 0.3s ease;
+  animation: scaleBtn 2s ease-in-out infinite;
 }
 
+@keyframes scaleBtn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .qoute-head {
   color: brown;
 }
