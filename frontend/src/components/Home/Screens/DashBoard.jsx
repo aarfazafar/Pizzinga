@@ -57,41 +57,62 @@ const DashBoard = ({ menuClicked, setMenuClicked }) => {
           >
             <div class="carousel-inner">
               <div
-                class="carousel-item active"
+                class="carousel-item w-100 active"
                 data-bs-interval="4000"
-                style={{ height: "24vh", background: "#f8f9fa" }}
+                style={{ height: "24vh", background: "#f8f9fa"}}
               >
                 <div className="row mt-2 text-center">
-                  <div className="col-md-4">
+                  <div className="col-md-3 d-flex justify-content-center">
                     <div className="capsule border">
+                      <div>
+                      <img
+                        src="https://www.secondrecipe.com/wp-content/uploads/2021/10/air-fryer-pizza-1.jpg"
+                        alt=""
+                        className="capsule-img"
+                      />
+                      </div>
+                      <h4 className="foot-title">Veggies Delight</h4>
+                      <p className='capsule-text'>from <br/><b>@99/- only!</b></p>
+                    </div>
+                  </div>
+                  <div className="col-md-3 d-flex justify-content-center">
+                    <div className="capsule border">
+                      <div>
+                      <img
+                        src="https://foodoncall.co.in/wp-content/uploads/2017/10/chatpata-paneer-pizza.jpg"
+                        alt=""
+                        className="capsule-img"
+                      />
+                      </div>
+                      <h4 className="foot-title">Paneer Craze</h4>
+                      <p className='capsule-text'>from <br/><b>@199/- only!</b></p>
+                    </div>
+                  </div>
+                  <div className="col-md-3 d-flex justify-content-center">
+                    <div className="capsule border">
+                      <div>
                       <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrz8f66U-IU8hFujqUeqB06jbkiZ1uVHu8dQ&s"
                         alt=""
                         className="capsule-img"
                       />
-                      <h4 className="foot-title">Veggies Delight</h4>
-                      <p>Fresh Veggies</p>
+                      </div>
+                      <h4 className="foot-title">Non Veg</h4>
+                      <p className='capsule-text'>from <br/><b>@299/- only!</b></p>
                     </div>
                   </div>
-                  <div className="col-md-4">
-
-                  <div className="capsule border"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrz8f66U-IU8hFujqUeqB06jbkiZ1uVHu8dQ&s" alt="" className="capsule-img"/>
-                      <h4  className="foot-title">Non veg</h4>
-                      <p>
-                      For meat Lovers
-                    </p>
+                  <div className="col-md-3 d-flex justify-content-center">
+                    <div className="capsule border">
+                      <div>
+                      <img
+                        src="https://sinfullyspicy.com/wp-content/uploads/2022/02/Tandoori-Mushroom-Pizza-Featured-Image.jpg"
+                        alt=""
+                        className="capsule-img"
+                      />
                       </div>
-
-
-                  </div>
-                  <div className="col-md-4">
-                  <div className="capsule border"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrz8f66U-IU8hFujqUeqB06jbkiZ1uVHu8dQ&s" alt="" className="capsule-img"/>
-                      <h4  className="foot-title">Mushroom Magic</h4>
-                      <p>
-                      Lorem ipsum 
-                    </p>
-                      </div>
-
+                      <h4 className="foot-title">Mushroom Love</h4>
+                      <p className='capsule-text'>from<br/> <b>@199/- only!</b></p>
+                    </div>
                   </div>
                 </div>
               </div>
