@@ -21,7 +21,6 @@ const MyOrders = () => {
         body: JSON.stringify({
           email: localStorage.getItem("userEmail"),
         }),
-        credentials: "include"
       });
       const data = await response.json();
       setOrderData(data.orderData?.order_data || []);
