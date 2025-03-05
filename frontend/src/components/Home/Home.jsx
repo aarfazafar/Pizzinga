@@ -5,9 +5,10 @@ import { useEffect } from "react";
 import "./home.css";
 import CustomCard from "../Customize/CustomCard";
 import DashBoard from "./Screens/DashBoard";
-const VITE_BASE_URL =  import.meta.env.MODE === "development"
-? import.meta.env.VITE_BASE_URL_DEV
-: import.meta.env.VITE_BASE_URL;
+const VITE_BASE_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_BASE_URL_DEV
+    : import.meta.env.VITE_BASE_URL;
 
 const Home = () => {
   const [pizzaList, setPizzaList] = useState([]);
@@ -28,7 +29,8 @@ const Home = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include"
+      mode: "cors",
+      credentials: "same-origin",
     });
     response = await response.json();
     setPizzaList(response);
