@@ -67,7 +67,7 @@ body {
 
   opacity: 0;
   transform: scale(0.8);
-  animation: fadeIn 0.8s ease-out forwards, scaleCard 2s ease-in-out 1.5s infinite;
+  animation: fadeIn 1s ease-out forwards, scaleCard 2s ease-in-out 1.5s infinite;
 /* 
   transition: all 0.3s ease;
   animation: scaleCard 2s ease-in-out infinite; */
@@ -131,7 +131,7 @@ body {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
   100% {
     transform: scale(1);

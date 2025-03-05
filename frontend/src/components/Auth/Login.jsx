@@ -5,13 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const VITE_BASE_URL =  import.meta.env.MODE === "development"
+? import.meta.env.VITE_BASE_URL_DEV
+: import.meta.env.VITE_BASE_URL;
+
 const Login = () => {
   const [credentials, setCredentials] = useState({email:'',password:''})
   let Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/userlogin", {
+    const response = await fetch(`${VITE_BASE_URL}/api/userlogin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -2,14 +2,16 @@ import React, {useState} from "react";
 import { Link,  useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+const VITE_BASE_URL =  import.meta.env.MODE === "development"
+? import.meta.env.VITE_BASE_URL_DEV
+: import.meta.env.VITE_BASE_URL;
 const Register = () => {
   const [credentials, setCredentials] = useState({name:'', email:'',password:'', location:''})
   let Navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/createuser", {
+    const response = await fetch(`${VITE_BASE_URL}/api/createuser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

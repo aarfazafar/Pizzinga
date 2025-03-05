@@ -6,6 +6,10 @@ import emptyCart from "../../assets/emptyCart.jpg";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const VITE_BASE_URL =  import.meta.env.MODE === "development"
+? import.meta.env.VITE_BASE_URL_DEV
+: import.meta.env.VITE_BASE_URL;
+
 export default function Cart() {
   let data = useCart();
   let dispatch = useDispatch();
@@ -23,7 +27,7 @@ export default function Cart() {
   }, []);
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
-    let response = await fetch("http://localhost:3000/api/orderData", {
+    let response = await fetch(`${VITE_BASE_URL}/api/orderData`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

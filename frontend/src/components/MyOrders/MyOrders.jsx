@@ -5,11 +5,15 @@ import Navigator from "../Navbar/Navigator"
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const VITE_BASE_URL =  import.meta.env.MODE === "development"
+? import.meta.env.VITE_BASE_URL_DEV
+: import.meta.env.VITE_BASE_URL;
+
 const MyOrders = () => {
   const [orderData, setOrderData] = useState([]);
   const fetchMyOrder = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/myOrderData", {
+      const response = await fetch(`${VITE_BASE_URL}/api/myOrderData`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +31,7 @@ const MyOrders = () => {
 
   const deleteOrder = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/deleteOrder", {
+      const response = await fetch(`${VITE_BASE_URL}/api/deleteOrder`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

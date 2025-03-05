@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import "./home.css";
 import CustomCard from "../Customize/CustomCard";
 import DashBoard from "./Screens/DashBoard";
+const VITE_BASE_URL =  import.meta.env.MODE === "development"
+? import.meta.env.VITE_BASE_URL_DEV
+: import.meta.env.VITE_BASE_URL;
 
 const Home = () => {
   const [pizzaList, setPizzaList] = useState([]);
@@ -20,7 +23,7 @@ const Home = () => {
     setToCustomize(true);
   };
   const fetchData = async () => {
-    let response = await fetch("http://localhost:3000/api/displaydata", {
+    let response = await fetch(`${VITE_BASE_URL}/api/displaydata`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

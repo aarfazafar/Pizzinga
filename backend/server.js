@@ -5,10 +5,11 @@ const PORT = process.env.PORT || 3000;
 const connectToDatabase = require("./models/db");
 connectToDatabase();
 const dotenv = require('dotenv')
+const FRONTEND = process.env.VITE_FRONTEND_URL;
 
 
 const corsOptions = {
-  origin: 'http://localhost:5173', 
+  origin: [FRONTEND, "http://localhost:5173"],
   optionsSuccessStatus: 200,
 };
 
