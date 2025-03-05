@@ -28,6 +28,7 @@ const Home = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include"
     });
     response = await response.json();
     setPizzaList(response);
