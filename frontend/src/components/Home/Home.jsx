@@ -29,8 +29,6 @@ const Home = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      mode: "cors",
-      credentials: "same-origin",
     });
     response = await response.json();
     setPizzaList(response);
