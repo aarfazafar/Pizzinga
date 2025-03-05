@@ -11,14 +11,14 @@ connectToDatabase();
 
 const FRONTEND = process.env.VITE_FRONTEND_URL || "http://localhost:5173";
 
-const corsOptions = {
-  origin: [FRONTEND, "http://localhost:5173"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin:[FRONTEND, "http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Authorization"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
